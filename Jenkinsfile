@@ -7,13 +7,13 @@ pipeline {
         stage('Build Application') { 
             steps {
                 echo '=== Building Hello World Application ==='
-                sh 'mvn -B -DskipTests clean package' 
+                bat 'mvn -B -DskipTests clean package' 
             }
         }
         stage('Test Application') {
             steps {
                 echo '=== Testing Hello World Application ==='
-                sh 'mvn test'
+                bat 'mvn test'
             }
             post {
                 always {
@@ -51,8 +51,8 @@ pipeline {
         stage('Remove local images') {
             steps {
                 echo '=== Delete the local docker images ==='
-                sh("docker rmi -f prasad15587/digital_route:latest || :")
-                sh("docker rmi -f prasad15587/digital_route-jenkins:$SHORT_COMMIT || :")
+                bat("docker rmi -f prasad15587/digital_route:latest || :")
+                bat("docker rmi -f prasad15587/digital_route-jenkins:$SHORT_COMMIT || :")
             }
         }
     }
